@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>🌸 Himasha Shavindi · 21</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Sinhala:wght@400;700&family=Noto+Sans+Tamil:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/static/css/hyper.css">
+</head>
+<body>
+    <div class="bg-aura"></div>
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- GATE MODAL -->
+    <div id="gate" class="gate-overlay">
+        <div class="gate-card glass">
+            <div class="gate-header">
+                <span class="gate-icon">🔮</span>
+                <h2 data-i18n="gate.title">🌸 A few thoughts... 🌸</h2>
+                <p data-i18n="gate.subtitle">There are no wrong answers. Just speak your heart.</p>
+            </div>
+            <div class="lang-switch-gate">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="si">සිං</button>
+                <button class="lang-btn" data-lang="ta">த</button>
+            </div>
+            <div id="gateQuestions"></div>
+            <button id="enterBtn" class="enter-btn" data-i18n="gate.enter">🌸 Enter Himasha's World 🌸</button>
+        </div>
+    </div>
+
+    <!-- MAIN APP -->
+    <main id="app" class="app-container hidden">
+        <header class="dynamic-island glass">
+            <span class="time" id="liveTime"></span>
+            <span class="badge">🌸 HS · 21</span>
+            <div class="lang-switch">
+                <button class="lang active" data-lang="en">EN</button>
+                <button class="lang" data-lang="si">සිං</button>
+                <button class="lang" data-lang="ta">த</button>
+            </div>
+        </header>
+
+        <section class="profile glass-card">
+            <div class="avatar">
+                <div class="avatar-ring"></div>
+                <div class="avatar-inner">
+                    <img src="/profile" alt="Himasha" id="profileImg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <span class="avatar-fallback">HS</span>
+                </div>
+                <div class="crown">👑</div>
+            </div>
+            <h1 class="name">Himasha Shavindi</h1>
+            <div class="age">21</div>
+            <div class="tags">
+                <span class="tag" data-i18n="tag.flower">🌸 Flower Soul</span>
+                <span class="tag" data-i18n="tag.blue">💙 Blue Dreamer</span>
+                <span class="tag" data-i18n="tag.music">🎵 Melody Heart</span>
+            </div>
+        </section>
+
+        <section class="therm glass-card">
+            <div class="therm-header">
+                <span data-i18n="therm.title">💖 Friendship Therm</span>
+                <span id="thermPercent">0%</span>
+            </div>
+            <div class="therm-bar"><div class="therm-fill" id="thermFill"></div></div>
+            <div class="therm-stats">
+                <div><span id="days">0</span> <span data-i18n="therm.days">d</span></div>
+                <div><span id="hours">0</span> <span data-i18n="therm.hours">h</span></div>
+                <div><span id="minutes">0</span> <span data-i18n="therm.minutes">m</span></div>
+                <div><span id="seconds">0</span> <span data-i18n="therm.seconds">s</span></div>
+            </div>
+        </section>
+
+        <section class="carousel glass-card">
+            <div class="carousel-header">
+                <h2 data-i18n="carousel.title">📸 Your Memories</h2>
+                <span class="auto-badge" data-i18n="carousel.auto">🔴 AUTO</span>
+            </div>
+            <div class="carousel-screen">
+                <div class="carousel-track" id="carouselTrack"></div>
+            </div>
+            <div class="carousel-caption" id="caption"></div>
+            <div class="carousel-dots" id="dots"></div>
+        </section>
+
+        <section class="quote glass-card">
+            <span class="quote-icon">💬</span>
+            <p id="quoteText"></p>
+            <button id="refreshQuote" class="quote-refresh-btn">⟳</button>
+        </section>
+
+        <section class="music glass-card">
+            <div class="music-visualizer"><canvas id="visualizer" width="400" height="50"></canvas></div>
+            <div class="music-info">
+                <span class="album-art">🎂</span>
+                <div>
+                    <h4 id="currentTrack" data-i18n="music.playlist">Playlist</h4>
+                    <p data-i18n="music.sub">🎵 Background Music</p>
+                </div>
+            </div>
+            <div class="music-controls">
+                <button id="playBtn" class="ctrl-btn">▶</button>
+                <button id="pauseBtn" class="ctrl-btn">⏸</button>
+                <button id="nextTrackBtn" class="ctrl-btn">⏭</button>
+                <input type="range" id="volume" min="0" max="100" value="70">
+            </div>
+            <audio id="bgMusic"></audio>
+        </section>
+
+        <button id="surpriseBtn" class="surprise-btn">
+            <span>🎁</span> <span data-i18n="surprise.btn">Open Your Surprise</span> <span>✨</span>
+        </button>
+    </main>
+
+    <canvas id="confettiCanvas"></canvas>
+    <script src="/public/static/js/hyper.js"></script>
+</body>
+</html>
