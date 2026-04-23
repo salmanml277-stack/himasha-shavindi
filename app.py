@@ -8,11 +8,11 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-BASE = "/storage/emulated/0"
-PROFILE_PIC = os.path.join(BASE, "DCIM/Facebook/Profile.jpg")
-SURPRISE_PATH = os.path.join(BASE, "Himasha surprise")
-MEMORIES_PATH = os.path.join(BASE, "Himasha surprise2")
-MUSIC_PATH = os.path.join(BASE, "Himasha surprise3")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROFILE_PIC = os.path.join(BASE_DIR, "public", "profile.jpg")
+SURPRISE_PATH = os.path.join(BASE_DIR, "public", "media")
+MEMORIES_PATH = os.path.join(BASE_DIR, "public", "media")
+MUSIC_PATH = os.path.join(BASE_DIR, "public", "media")
 
 FRIENDSHIP_START = datetime(2026, 2, 22, 14, 30)
 
@@ -53,14 +53,6 @@ def init():
         "friendship": friendship_stats(),
         "profile_exists": os.path.exists(PROFILE_PIC)
     })
-
-@app.route('/media/<path:filename>')
-def serve_media(filename):
-    for folder in [SURPRISE_PATH, MEMORIES_PATH, MUSIC_PATH]:
-        filepath = os.path.join(folder, filename)
-        if os.path.exists(filepath):
-            return send_from_directory(folder, filename)
-    return "", 404
 
 @app.route('/profile')
 def profile_pic():
