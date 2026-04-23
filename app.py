@@ -8,11 +8,14 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+# Render provides a PORT environment variable
+PORT = int(os.environ.get("PORT", 5000))
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-PROFILE_PIC = os.path.join(BASE_DIR, "public", "profile.jpg")
-SURPRISE_PATH = os.path.join(BASE_DIR, "public", "media")
-MEMORIES_PATH = os.path.join(BASE_DIR, "public", "media")
-MUSIC_PATH = os.path.join(BASE_DIR, "public", "media")
+PROFILE_PIC = os.path.join(BASE_DIR, "profile.jpg")
+SURPRISE_PATH = os.path.join(BASE_DIR, "media")   # wishes
+MEMORIES_PATH = os.path.join(BASE_DIR, "media")   # photos
+MUSIC_PATH = os.path.join(BASE_DIR, "media")      # background music
 
 FRIENDSHIP_START = datetime(2026, 2, 22, 14, 30)
 
@@ -57,8 +60,12 @@ def init():
 @app.route('/profile')
 def profile_pic():
     if os.path.exists(PROFILE_PIC):
-        return send_from_directory(os.path.dirname(PROFILE_PIC), os.path.basename(PROFILE_PIC))
+        return send_from_directory(BASE_DIR, "profile.jpg")
     return "", 404
+
+@app.route('/media/<path:filename>')
+def serve_media(filename):
+    return send_from_directory(MEDIA_PATH, filename)
 
 @app.route('/api/quote/<lang>')
 def quote(lang):
@@ -79,5 +86,4 @@ def friendship_stats():
 
 if __name__ == '__main__':
     print("\n🌸 HIMASHA SHAVINDI · HYPER APP 🌸")
-    app.run(host='0.0.0.0', port=5000, debug=False)
-# force deploy
+    app.run(host='0.0.0.0', port=PORT, debug=False)
