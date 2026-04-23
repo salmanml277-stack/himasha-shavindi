@@ -80,3 +80,4 @@ def friendship_stats():
 if __name__ == '__main__':
     print("\n🌸 HIMASHA SHAVINDI · HYPER APP 🌸")
     app.run(host='0.0.0.0', port=5000, debug=False)
+# force deploy
